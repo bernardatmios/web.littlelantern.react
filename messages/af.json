@@ -1,0 +1,49 @@
+{
+  "common": {
+    "appName": "Klein Lanterns",
+    "welcome": "Welkom",
+    "login": "Teken aan",
+    "register": "Registreer",
+    "logout": "Teken uit",
+    "profile": "Profiel",
+    "stories": "Stories",
+    "home": "Tuis",
+    "free": "Gratis",
+    "premium": "Premium"
+  },
+  "auth": {
+    "email": "E-pos",
+    "password": "Wagwoord",
+    "confirmPassword": "Bevestig Wagwoord",
+    "displayName": "Vertoonnaam",
+    "loginTitle": "Teken aan by Klein Lanterns",
+    "registerTitle": "Skep Rekening",
+    "noAccount": "Het jy nie 'n rekening nie?",
+    "hasAccount": "Het jy reeds 'n rekening?",
+    "forgotPassword": "Wagwoord vergeet?",
+    "loginError": "Aanmelding het misluk. Kontroleer asseblief jou besonderhede.",
+    "registerError": "Registrasie het misluk. Probeer asseblief weer.",
+    "loginSuccess": "Welkom terug!",
+    "registerSuccess": "Rekening suksesvol geskep!"
+  },
+  "stories": {
+    "allStories": "Alle Stories",
+    "readStory": "Lees Storie",
+    "listenToStory": "Luister na Storie",
+    "ageRange": "Ouderdomsgroep",
+    "rating": "Gradering",
+    "rateStory": "Gradeer hierdie storie",
+    "freeStory": "Gratis Storie",
+    "loginToRead": "Teken aan om hierdie storie te lees",
+    "noStories": "Geen stories beskikbaar nie"
+  },
+  "profile": {
+    "myProfile": "My Profiel",
+    "updateProfile": "Werk Profiel op",
+    "changePassword": "Verander Wagwoord",
+    "readingHistory": "Lees Geskiedenis",
+    "ratedStories": "Gegradeerde Stories",
+    "updateSuccess": "Profiel suksesvol opgedateer",
+    "updateError": "Kon nie profiel opdateer nie"
+  }
+}

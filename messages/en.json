@@ -1,0 +1,49 @@
+{
+  "common": {
+    "appName": "Little Lanterns",
+    "welcome": "Welcome",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "profile": "Profile",
+    "stories": "Stories",
+    "home": "Home",
+    "free": "Free",
+    "premium": "Premium"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "displayName": "Display Name",
+    "loginTitle": "Login to Little Lanterns",
+    "registerTitle": "Create Account",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "forgotPassword": "Forgot Password?",
+    "loginError": "Login failed. Please check your credentials.",
+    "registerError": "Registration failed. Please try again.",
+    "loginSuccess": "Welcome back!",
+    "registerSuccess": "Account created successfully!"
+  },
+  "stories": {
+    "allStories": "All Stories",
+    "readStory": "Read Story",
+    "listenToStory": "Listen to Story",
+    "ageRange": "Age Range",
+    "rating": "Rating",
+    "rateStory": "Rate this story",
+    "freeStory": "Free Story",
+    "loginToRead": "Login to read this story",
+    "noStories": "No stories available yet"
+  },
+  "profile": {
+    "myProfile": "My Profile",
+    "updateProfile": "Update Profile",
+    "changePassword": "Change Password",
+    "readingHistory": "Reading History",
+    "ratedStories": "Rated Stories",
+    "updateSuccess": "Profile updated successfully",
+    "updateError": "Failed to update profile"
+  }
+}
