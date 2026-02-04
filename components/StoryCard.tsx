@@ -10,19 +10,30 @@ interface StoryCardProps {
 export default function StoryCard({ story, locale }: StoryCardProps) {
   const title = story.title[locale as 'en' | 'af']
   const intro = story.shortIntroduction[locale as 'en' | 'af']
-  const imageUrl = urlFor(story.coverImage[locale as 'en' | 'af']).width(400).height(600).url()
+  
+  // Fallback to other locale if current locale image is missing
+  const coverImage = story.coverImage?.[locale as 'en' | 'af'] 
+    || story.coverImage?.en 
+    || story.coverImage?.af
+  const imageUrl = coverImage ? urlFor(coverImage).width(400).height(600).url() : null
 
   return (
     <Link href={`/stories/${story.slug.current}`}>
       <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:scale-105 cursor-pointer">
         <div className="relative h-64">
-          <Image
-            src={imageUrl}
-            alt={title}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
+          {imageUrl ? (
+            <Image
+              src={imageUrl}
+              alt={title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          ) : (
+            <div className="w-full h-full bg-purple-100 flex items-center justify-center">
+              <span className="text-6xl">📚</span>
+            </div>
+          )}
           {story.isFree && (
             <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
               FREE

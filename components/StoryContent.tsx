@@ -18,7 +18,12 @@ export default function StoryContent({ story, locale }: StoryContentProps) {
   const title = story.title[locale as 'en' | 'af']
   const intro = story.shortIntroduction[locale as 'en' | 'af']
   const content = story.story[locale as 'en' | 'af']
-  const imageUrl = urlFor(story.coverImage[locale as 'en' | 'af']).width(800).height(1200).url()
+  
+  // Fallback to other locale if current locale image is missing
+  const coverImage = story.coverImage?.[locale as 'en' | 'af'] 
+    || story.coverImage?.en 
+    || story.coverImage?.af
+  const imageUrl = coverImage ? urlFor(coverImage).width(800).height(1200).url() : null
 
   const canReadFull = user || story.isFree
 
@@ -28,13 +33,19 @@ export default function StoryContent({ story, locale }: StoryContentProps) {
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           {/* Cover Image */}
           <div className="relative h-96">
-            <Image
-              src={imageUrl}
-              alt={title}
-              fill
-              className="object-cover"
-              priority
-            />
+            {imageUrl ? (
+              <Image
+                src={imageUrl}
+                alt={title}
+                fill
+                className="object-cover"
+                priority
+              />
+            ) : (
+              <div className="w-full h-full bg-purple-100 flex items-center justify-center">
+                <span className="text-8xl">📚</span>
+              </div>
+            )}
             {story.isFree && (
               <div className="absolute top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
                 FREE STORY
