@@ -1,15 +1,18 @@
 import { createClient } from 'next-sanity'
-import imageUrlBuilder from '@sanity/image-url'
-import { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import { createImageUrlBuilder } from '@sanity/image-url'
+
+// Define SanityImageSource type locally as it's not exported from @sanity/image-url
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type SanityImageSource = any
 
 export const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'w7lunhwo',
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  projectId: process.env.SANITY_PROJECT_ID || 'w7lunhwo',
+  dataset: process.env.SANITY_DATASET || 'production',
   apiVersion: '2024-01-01',
   useCdn: process.env.NODE_ENV === 'production',
 })
 
-const builder = imageUrlBuilder(client)
+const builder = createImageUrlBuilder(client)
 
 export function urlFor(source: SanityImageSource) {
   return builder.image(source)
@@ -35,15 +38,33 @@ export interface StoryBook {
     af: any[]
   }
   audioFile?: {
-    asset: {
-      _ref: string
-      _type: 'reference'
+    en?: {
+      asset: {
+        _ref?: string
+        _type?: 'reference'
+        url?: string
+      }
+    }
+    af?: {
+      asset: {
+        _ref?: string
+        _type?: 'reference'
+        url?: string
+      }
     }
   }
   coverImage: {
-    asset: {
-      _ref: string
-      _type: 'reference'
+    en: {
+      asset: {
+        _ref: string
+        _type: 'reference'
+      }
+    }
+    af: {
+      asset: {
+        _ref: string
+        _type: 'reference'
+      }
     }
   }
   isFree: boolean
