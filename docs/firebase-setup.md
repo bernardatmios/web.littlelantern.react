@@ -53,16 +53,18 @@ service cloud.firestore {
 2. Scroll to "Your apps"
 3. Click the **Web** icon (</>)
 4. Register your app with a nickname
-5. Copy the config object values to your `.env.local`:
+5. Copy the config object values to your `.env.local` (server-side only):
 
 \`\`\`env
-NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+FIREBASE_API_KEY=your_api_key
+FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+FIREBASE_PROJECT_ID=your_project_id
+FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+FIREBASE_APP_ID=your_app_id
 \`\`\`
+
+**Note:** These are server-side only variables (not prefixed with `NEXT_PUBLIC_`). The Firebase config is served to the client via an API route for better security.
 
 ## Testing
 

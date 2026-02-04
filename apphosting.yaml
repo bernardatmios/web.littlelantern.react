@@ -43,6 +43,6 @@ env:
     availability:
       - RUNTIME
   - variable: FIREBASE_APP_ID
-    value: 1:910306823502:web:639babef8756ad11ff
+    value: "1:910306823502:web:639babef8756ad11ff"
     availability:
       - RUNTIME

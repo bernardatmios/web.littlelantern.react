@@ -37,18 +37,20 @@ git push origin main
 
 ### Step 3: Add Environment Variables
 
-In Vercel project settings, add all environment variables from `.env.local`:
+In Vercel project settings, add all environment variables from `.env.local` (server-side only):
 
 ```
-NEXT_PUBLIC_SANITY_PROJECT_ID=w7lunhwo
-NEXT_PUBLIC_SANITY_DATASET=production
-NEXT_PUBLIC_FIREBASE_API_KEY=your_actual_key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+SANITY_PROJECT_ID=w7lunhwo
+SANITY_DATASET=production
+FIREBASE_API_KEY=your_actual_key
+FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
+FIREBASE_PROJECT_ID=your-project-id
+FIREBASE_STORAGE_BUCKET=your-project.appspot.com
+FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+FIREBASE_APP_ID=your_app_id
 ```
+
+**Important:** These are server-side only variables. They are not exposed to the client bundle.
 
 ### Step 4: Deploy
 

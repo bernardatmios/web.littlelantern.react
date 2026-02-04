@@ -18,7 +18,7 @@ export default function StoryContent({ story, locale }: StoryContentProps) {
   const title = story.title[locale as 'en' | 'af']
   const intro = story.shortIntroduction[locale as 'en' | 'af']
   const content = story.story[locale as 'en' | 'af']
-  const imageUrl = urlFor(story.coverImage).width(800).height(1200).url()
+  const imageUrl = urlFor(story.coverImage[locale as 'en' | 'af']).width(800).height(1200).url()
 
   const canReadFull = user || story.isFree
 
@@ -66,9 +66,9 @@ export default function StoryContent({ story, locale }: StoryContentProps) {
             <p className="text-xl text-gray-700 mb-8 italic">{intro}</p>
 
             {/* Audio Player */}
-            {story.audioFile && canReadFull && (
+            {story.audioFile && story.audioFile[locale as 'en' | 'af'] && canReadFull && (
               <div className="mb-8">
-                <AudioPlayer audioFile={story.audioFile} title={title} />
+                <AudioPlayer audioFile={story.audioFile[locale as 'en' | 'af']!} title={title} />
               </div>
             )}
 

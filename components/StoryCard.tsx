@@ -10,7 +10,7 @@ interface StoryCardProps {
 export default function StoryCard({ story, locale }: StoryCardProps) {
   const title = story.title[locale as 'en' | 'af']
   const intro = story.shortIntroduction[locale as 'en' | 'af']
-  const imageUrl = urlFor(story.coverImage).width(400).height(600).url()
+  const imageUrl = urlFor(story.coverImage[locale as 'en' | 'af']).width(400).height(600).url()
 
   return (
     <Link href={`/stories/${story.slug.current}`}>

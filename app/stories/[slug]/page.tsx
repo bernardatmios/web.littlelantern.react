@@ -11,8 +11,22 @@ async function getStory(slug: string): Promise<StoryBook | null> {
     slug,
     shortIntroduction,
     story,
-    audioFile,
-    coverImage,
+    audioFile {
+      en {
+        asset->
+      },
+      af {
+        asset->
+      }
+    },
+    coverImage {
+      en {
+        asset->
+      },
+      af {
+        asset->
+      }
+    },
     isFree,
     ageRange,
     averageRating,
@@ -22,8 +36,9 @@ async function getStory(slug: string): Promise<StoryBook | null> {
   return client.fetch(query, { slug })
 }
 
-export default async function StoryPage({ params }: { params: { slug: string } }) {
-  const story = await getStory(params.slug)
+export default async function StoryPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const story = await getStory(slug)
   const locale = await getLocale()
 
   if (!story) {

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { doc, setDoc, getDoc } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { initializeFirebase } from '@/lib/firebase'
 
 interface RatingComponentProps {
   storyId: string
@@ -21,6 +21,7 @@ export default function RatingComponent({ storyId, userId }: RatingComponentProp
 
   const loadUserRating = async () => {
     try {
+      const { db } = await initializeFirebase()
       const ratingId = `${userId}_${storyId}`
       const ratingDoc = await getDoc(doc(db, 'ratings', ratingId))
 
@@ -37,6 +38,7 @@ export default function RatingComponent({ storyId, userId }: RatingComponentProp
   const handleRating = async (newRating: number) => {
     setSaving(true)
     try {
+      const { db } = await initializeFirebase()
       const ratingId = `${userId}_${storyId}`
       await setDoc(doc(db, 'ratings', ratingId), {
         userId,

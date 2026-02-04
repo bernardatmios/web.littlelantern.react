@@ -4,8 +4,9 @@ import { useState, useRef } from 'react'
 
 interface AudioPlayerProps {
   audioFile: {
-    asset: {
-      _ref: string
+    asset?: {
+      _ref?: string
+      url?: string
     }
   }
   title: string
@@ -17,9 +18,21 @@ export default function AudioPlayer({ audioFile, title }: AudioPlayerProps) {
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
 
-  // Extract Sanity asset ID and construct audio URL
-  const assetId = audioFile.asset._ref.replace('file-', '').replace('-mp3', '.mp3').replace('-m4a', '.m4a')
-  const audioUrl = `https://cdn.sanity.io/files/w7lunhwo/production/${assetId}`
+  // Get audio URL from asset
+  if (!audioFile?.asset) {
+    return null
+  }
+  
+  // Use the URL directly if available, otherwise construct from _ref
+  const audioUrl = audioFile.asset.url || (() => {
+    if (!audioFile.asset._ref) return null
+    const assetId = audioFile.asset._ref.replace('file-', '').replace('-mp3', '.mp3').replace('-m4a', '.m4a')
+    return `https://cdn.sanity.io/files/w7lunhwo/production/${assetId}`
+  })()
+  
+  if (!audioUrl) {
+    return null
+  }
 
   const togglePlay = () => {
     if (audioRef.current) {

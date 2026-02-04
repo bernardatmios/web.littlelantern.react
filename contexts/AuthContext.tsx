@@ -11,7 +11,8 @@ import {
   updateEmail,
   updatePassword,
 } from 'firebase/auth'
-import { auth } from '@/lib/firebase'
+import { initializeFirebase } from '@/lib/firebase'
+import type { Auth } from 'firebase/auth'
 
 interface AuthContextType {
   user: User | null
@@ -29,28 +30,39 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
+  const [auth, setAuth] = useState<Auth | null>(null)
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user)
-      setLoading(false)
+    let unsubscribe: (() => void) | undefined
+
+    initializeFirebase().then(({ auth: firebaseAuth }) => {
+      setAuth(firebaseAuth)
+      unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
+        setUser(user)
+        setLoading(false)
+      })
     })
 
-    return unsubscribe
+    return () => {
+      if (unsubscribe) unsubscribe()
+    }
   }, [])
 
   const register = async (email: string, password: string, displayName: string) => {
+    if (!auth) throw new Error('Firebase not initialized')
     const userCredential = await createUserWithEmailAndPassword(auth, email, password)
     await updateProfile(userCredential.user, { displayName })
     setUser(userCredential.user)
   }
 
   const login = async (email: string, password: string) => {
+    if (!auth) throw new Error('Firebase not initialized')
     const userCredential = await signInWithEmailAndPassword(auth, email, password)
     setUser(userCredential.user)
   }
 
   const logout = async () => {
+    if (!auth) throw new Error('Firebase not initialized')
     await signOut(auth)
     setUser(null)
   }
