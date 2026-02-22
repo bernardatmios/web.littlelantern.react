@@ -122,7 +122,7 @@ export default function StoryContent({ story, locale }: StoryContentProps) {
               </div>
             )}
 
-            {canRate && (
+            {canRate && user && (
               <div className="mt-8 border-t border-[#ccfbf1] pt-8">
                 <RatingComponent storyId={story._id} userId={user.uid} />
               </div>
