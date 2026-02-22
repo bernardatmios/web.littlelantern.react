@@ -1,5 +1,6 @@
 import { createClient } from 'next-sanity'
 import { createImageUrlBuilder } from '@sanity/image-url'
+import type { TypedObject } from '@portabletext/types'
 
 export const client = createClient({
   projectId: process.env.SANITY_PROJECT_ID || 'w7lunhwo',
@@ -32,8 +33,8 @@ export interface StoryBook {
     af: string
   }
   story: {
-    en: unknown[]
-    af: unknown[]
+    en: TypedObject[]
+    af: TypedObject[]
   }
   audioFile?: {
     en?: {

@@ -65,8 +65,8 @@ function getLocalizedValue(
 function getLocalizedImage(
   image:
     | {
-        en?: { asset?: { url?: string } }
-        af?: { asset?: { url?: string } }
+        en?: { asset?: { _ref?: string; _type?: 'reference'; url?: string } }
+        af?: { asset?: { _ref?: string; _type?: 'reference'; url?: string } }
       }
     | undefined,
   locale: string,
