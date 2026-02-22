@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Klein Lanterns",
+    "appName": "Klein Lanterntjies",
     "welcome": "Welkom",
     "login": "Teken aan",
     "register": "Registreer",
@@ -9,41 +9,124 @@
     "stories": "Stories",
     "home": "Tuis",
     "free": "Gratis",
-    "premium": "Premium"
+    "premium": "Premium",
+    "storyLibrary": "Storie-biblioteek",
+    "kidsSpace": "Kinderspasie",
+    "parentMode": "Ouer-modus",
+    "childMode": "Kind-modus",
+    "ageOption0_2": "0-2 jaar",
+    "ageOption3_5": "3-5 jaar",
+    "ageOption6_8": "6-8 jaar",
+    "ageOption9_12": "9-12 jaar"
   },
   "auth": {
     "email": "E-pos",
     "password": "Wagwoord",
-    "confirmPassword": "Bevestig Wagwoord",
+    "confirmPassword": "Bevestig wagwoord",
     "displayName": "Vertoonnaam",
-    "loginTitle": "Teken aan by Klein Lanterns",
-    "registerTitle": "Skep Rekening",
+    "loginTitle": "Teken aan by Klein Lanterntjies",
+    "registerTitle": "Skep rekening",
     "noAccount": "Het jy nie 'n rekening nie?",
     "hasAccount": "Het jy reeds 'n rekening?",
     "forgotPassword": "Wagwoord vergeet?",
     "loginError": "Aanmelding het misluk. Kontroleer asseblief jou besonderhede.",
     "registerError": "Registrasie het misluk. Probeer asseblief weer.",
     "loginSuccess": "Welkom terug!",
-    "registerSuccess": "Rekening suksesvol geskep!"
+    "registerSuccess": "Rekening suksesvol geskep!",
+    "parentAccount": "Ouer-rekening",
+    "parentSignup": "Ouer-registrasie",
+    "passwordMismatch": "Wagwoorde stem nie ooreen nie",
+    "passwordMinLength": "Wagwoord moet minstens 6 karakters wees",
+    "yourName": "Jou naam"
   },
   "stories": {
-    "allStories": "Alle Stories",
-    "readStory": "Lees Storie",
-    "listenToStory": "Luister na Storie",
-    "ageRange": "Ouderdomsgroep",
+    "allStories": "Alle stories",
+    "readStory": "Lees storie",
+    "listenToStory": "Luister na storie",
+    "ageRange": "Ouderdom",
     "rating": "Gradering",
     "rateStory": "Gradeer hierdie storie",
-    "freeStory": "Gratis Storie",
+    "freeStory": "Gratis storie",
     "loginToRead": "Teken aan om hierdie storie te lees",
-    "noStories": "Geen stories beskikbaar nie"
+    "noStories": "Geen stories beskikbaar nie",
+    "ageBadge": "Ouderdom {age}"
   },
   "profile": {
-    "myProfile": "My Profiel",
-    "updateProfile": "Werk Profiel op",
-    "changePassword": "Verander Wagwoord",
-    "readingHistory": "Lees Geskiedenis",
-    "ratedStories": "Gegradeerde Stories",
+    "myProfile": "My profiel",
+    "updateProfile": "Werk profiel op",
+    "changePassword": "Verander wagwoord",
+    "readingHistory": "Leesgeskiedenis",
+    "ratedStories": "Gegradeerde stories",
     "updateSuccess": "Profiel suksesvol opgedateer",
-    "updateError": "Kon nie profiel opdateer nie"
+    "updateError": "Kon nie profiel opdateer nie",
+    "newPassword": "Nuwe wagwoord",
+    "keepPasswordPlaceholder": "Laat leeg om huidige wagwoord te behou",
+    "accountCreated": "Rekening geskep",
+    "userId": "Gebruiker-ID"
+  },
+  "landing": {
+    "independentPublication": "Onafhanklike tweetalige publikasie",
+    "heroTitle": "Stories wat ouers vertrou, gemaak vir kinders om te lees en te luister.",
+    "heroSubtitle": "Skakel tussen Ouer-modus vir kurering en Kind-modus vir gefokusde lees. Engelse en Afrikaanse stories, met opsionele vertelling.",
+    "exploreLibrary": "Verken biblioteek",
+    "openKidsSpace": "Open kinderspasie",
+    "featuredStories": "Uitgeligte stories",
+    "featuredSubtitle": "'n Voorsmakie van wat gesinne vanaand kan lees.",
+    "viewAllStories": "Sien alle stories",
+    "noStoriesReady": "Stories word voorberei. Kom kyk binnekort weer.",
+    "featureParentTitle": "Ouer-kurering",
+    "featureParentDescription": "Filter volgens ouderdom en gratis/premium-status om vinnig die regte stories te kies.",
+    "featureChildTitle": "Kind-profiel",
+    "featureChildDescription": "Skep 'n kindgefokusde ruimte met ouderdomsgeskikte lees- en luisteraanbevelings.",
+    "featureRatingTitle": "Ouer-graderings",
+    "featureRatingDescription": "Ingelogde ouers kan stories gradeer om gehalte en relevansie te help vorm."
+  },
+  "library": {
+    "title": "Storie-biblioteek",
+    "description": "Blaai deur slaaptydstories, filter volgens ouderdom, en skakel tussen Ouer-modus en Kind-modus vir die regte leeservaring.",
+    "curateStories": "Kureer stories",
+    "storiesFor": "Stories vir {name}",
+    "storiesCount": "{count} stories",
+    "allAgeGroups": "Alle ouderdomsgroepe",
+    "freeOnly": "Slegs gratis stories",
+    "noFilterResults": "Geen stories pas nog by hierdie filter nie."
+  },
+  "kids": {
+    "childProfile": "Kind-profiel",
+    "helloName": "Hallo, {name}!",
+    "safeSpaceDescription": "Hierdie ruimte is ontwerp vir kinders om veilig te lees en te luister. Stories is ingestel vir ouderdomsgroep {ageRange}.",
+    "childNamePlaceholder": "Kind se naam",
+    "backToParent": "Terug na Ouer-kurering",
+    "defaultChildName": "Klein Leser"
+  },
+  "story": {
+    "parentModeBadge": "Ouer-modus",
+    "childModeBadge": "Kind-modus: {name}",
+    "freeStoryBadge": "GRATIS STORIE",
+    "premiumTitle": "Premium storie",
+    "premiumPrompt": "Teken aan om hierdie storie en klankvertelling te ontsluit.",
+    "loginCta": "Teken aan",
+    "registerCta": "Skep rekening"
+  },
+  "rating": {
+    "loading": "Laai gradering...",
+    "title": "Ouer-gradering",
+    "ratedMessage": "Jy het hierdie storie {rating} uit 5 sterre gegradeer",
+    "saving": "Stoor...",
+    "saveError": "Kon nie gradering stoor nie. Probeer asseblief weer."
+  },
+  "audio": {
+    "listenTitle": "Luister na die storie",
+    "playAria": "Speel {title}",
+    "pauseAria": "Pouseer {title}"
+  },
+  "footer": {
+    "tagline": "'n Rustige tweetalige storieplatform vir gesinne wat waarde heg aan deurdagte lees en luister.",
+    "explore": "Verken",
+    "publication": "Publikasie",
+    "independent": "Onafhanklike publikasie",
+    "bilingual": "Engelse en Afrikaanse stories",
+    "rights": "Alle regte voorbehou",
+    "copyright": "© {year} Klein Lanterntjies"
   }
 }

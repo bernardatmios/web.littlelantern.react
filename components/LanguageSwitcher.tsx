@@ -21,8 +21,8 @@ export default function LanguageSwitcher() {
         disabled={isPending}
         className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
           locale === 'en'
-            ? 'bg-purple-600 text-white'
-            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            ? 'bg-[#0f766e] text-white'
+            : 'bg-white text-[#334155] ring-1 ring-[#0f766e]/25 hover:bg-[#ccfbf1]'
         } disabled:opacity-50`}
       >
         EN
@@ -32,8 +32,8 @@ export default function LanguageSwitcher() {
         disabled={isPending}
         className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
           locale === 'af'
-            ? 'bg-purple-600 text-white'
-            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            ? 'bg-[#0f766e] text-white'
+            : 'bg-white text-[#334155] ring-1 ring-[#0f766e]/25 hover:bg-[#ccfbf1]'
         } disabled:opacity-50`}
       >
         AF

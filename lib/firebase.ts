@@ -2,11 +2,20 @@ import { initializeApp, getApps, FirebaseApp } from 'firebase/app'
 import { getAuth, Auth } from 'firebase/auth'
 import { getFirestore, Firestore } from 'firebase/firestore'
 
+interface FirebaseWebConfig {
+  apiKey?: string
+  authDomain?: string
+  projectId?: string
+  storageBucket?: string
+  messagingSenderId?: string
+  appId?: string
+}
+
 let app: FirebaseApp | null = null
 let auth: Auth | null = null
 let db: Firestore | null = null
 
-let configPromise: Promise<any> | null = null
+let configPromise: Promise<FirebaseWebConfig> | null = null
 
 async function getFirebaseConfig() {
   if (!configPromise) {

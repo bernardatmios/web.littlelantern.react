@@ -9,7 +9,15 @@
     "stories": "Stories",
     "home": "Home",
     "free": "Free",
-    "premium": "Premium"
+    "premium": "Premium",
+    "storyLibrary": "Story Library",
+    "kidsSpace": "Kids Space",
+    "parentMode": "Parent Mode",
+    "childMode": "Child Mode",
+    "ageOption0_2": "0-2 years",
+    "ageOption3_5": "3-5 years",
+    "ageOption6_8": "6-8 years",
+    "ageOption9_12": "9-12 years"
   },
   "auth": {
     "email": "Email",
@@ -24,7 +32,12 @@
     "loginError": "Login failed. Please check your credentials.",
     "registerError": "Registration failed. Please try again.",
     "loginSuccess": "Welcome back!",
-    "registerSuccess": "Account created successfully!"
+    "registerSuccess": "Account created successfully!",
+    "parentAccount": "Parent account",
+    "parentSignup": "Parent signup",
+    "passwordMismatch": "Passwords do not match",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "yourName": "Your name"
   },
   "stories": {
     "allStories": "All Stories",
@@ -35,7 +48,8 @@
     "rateStory": "Rate this story",
     "freeStory": "Free Story",
     "loginToRead": "Login to read this story",
-    "noStories": "No stories available yet"
+    "noStories": "No stories available yet",
+    "ageBadge": "Ages {age}"
   },
   "profile": {
     "myProfile": "My Profile",
@@ -44,6 +58,75 @@
     "readingHistory": "Reading History",
     "ratedStories": "Rated Stories",
     "updateSuccess": "Profile updated successfully",
-    "updateError": "Failed to update profile"
+    "updateError": "Failed to update profile",
+    "newPassword": "New Password",
+    "keepPasswordPlaceholder": "Leave blank to keep current password",
+    "accountCreated": "Account created",
+    "userId": "User ID"
+  },
+  "landing": {
+    "independentPublication": "Independent bilingual publication",
+    "heroTitle": "Stories parents trust, crafted for children to read and listen.",
+    "heroSubtitle": "Switch between Parent Mode for curation and Child Mode for a focused reading space. English and Afrikaans stories, with optional narration.",
+    "exploreLibrary": "Explore Library",
+    "openKidsSpace": "Open Kids Space",
+    "featuredStories": "Featured Stories",
+    "featuredSubtitle": "A preview of what families can read tonight.",
+    "viewAllStories": "View all stories",
+    "noStoriesReady": "Stories are being prepared. Check back shortly.",
+    "featureParentTitle": "Parent Curation",
+    "featureParentDescription": "Filter by age and free/premium status to quickly pick the right stories.",
+    "featureChildTitle": "Child Profile",
+    "featureChildDescription": "Create a kid-focused space with age-matched reading and listening recommendations.",
+    "featureRatingTitle": "Parent Ratings",
+    "featureRatingDescription": "Logged-in parents can rate stories to help shape quality and relevance."
+  },
+  "library": {
+    "title": "Story Library",
+    "description": "Browse bedtime stories, filter by age, and switch between Parent Mode and Child Mode for the right reading experience.",
+    "curateStories": "Curate Stories",
+    "storiesFor": "Stories for {name}",
+    "storiesCount": "{count} stories",
+    "allAgeGroups": "All age groups",
+    "freeOnly": "Free stories only",
+    "noFilterResults": "No stories match this filter yet."
+  },
+  "kids": {
+    "childProfile": "Child Profile",
+    "helloName": "Hello, {name}!",
+    "safeSpaceDescription": "This space is designed for kids to read and listen safely. Stories are tuned for age group {ageRange}.",
+    "childNamePlaceholder": "Child name",
+    "backToParent": "Back to Parent Curation",
+    "defaultChildName": "Little Reader"
+  },
+  "story": {
+    "parentModeBadge": "Parent Mode",
+    "childModeBadge": "Child Mode: {name}",
+    "freeStoryBadge": "FREE STORY",
+    "premiumTitle": "Premium Story",
+    "premiumPrompt": "Please log in to unlock this story and audio narration.",
+    "loginCta": "Log In",
+    "registerCta": "Create Account"
+  },
+  "rating": {
+    "loading": "Loading rating...",
+    "title": "Parent Rating",
+    "ratedMessage": "You rated this story {rating} out of 5 stars",
+    "saving": "Saving...",
+    "saveError": "Failed to save rating. Please try again."
+  },
+  "audio": {
+    "listenTitle": "Listen to the story",
+    "playAria": "Play {title}",
+    "pauseAria": "Pause {title}"
+  },
+  "footer": {
+    "tagline": "A calm bilingual story platform for families who value thoughtful reading and listening.",
+    "explore": "Explore",
+    "publication": "Publication",
+    "independent": "Independent publication",
+    "bilingual": "English and Afrikaans stories",
+    "rights": "All rights reserved",
+    "copyright": "© {year} Little Lanterns"
   }
 }

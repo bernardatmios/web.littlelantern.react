@@ -1,13 +1,18 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { useAuth } from '@/contexts/AuthContext'
+import { useViewMode } from '@/contexts/ViewModeContext'
+import { BRAND_LOGO_URL } from '@/lib/branding'
 import LanguageSwitcher from './LanguageSwitcher'
+import ModeSwitcher from './ModeSwitcher'
 
 export default function Header() {
   const t = useTranslations('common')
   const { user, logout } = useAuth()
+  const { mode } = useViewMode()
 
   const handleLogout = async () => {
     try {
@@ -18,31 +23,40 @@ export default function Header() {
   }
 
   return (
-    <header className="bg-white shadow-md">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <Link href="/" className="text-2xl font-bold text-purple-600 font-fredoka">
-          {t('appName')}
-        </Link>
-
-        <nav className="flex items-center gap-6">
-          <Link
-            href="/stories"
-            className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
-          >
-            {t('stories')}
+    <header className="sticky top-0 z-50 border-b border-[#99f6e4] bg-[#ecfeff]/95 backdrop-blur">
+      <div className="container mx-auto flex flex-wrap items-center justify-between gap-4 px-4 py-4">
+        <div className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3">
+            <div className="relative h-11 w-11">
+              <Image src={BRAND_LOGO_URL} alt={t('appName')} fill sizes="44px" className="object-contain" />
+            </div>
+            <span className="text-2xl font-bold text-[#0f766e] font-fredoka">{t('appName')}</span>
           </Link>
+          <ModeSwitcher />
+        </div>
+
+        <nav className="flex items-center gap-5 text-sm md:text-base">
+          <Link href="/stories" className="font-medium text-[#0f172a] transition-colors hover:text-[#0f766e]">
+            {mode === 'parent' ? t('storyLibrary') : t('stories')}
+          </Link>
+
+          {mode === 'child' && (
+            <Link href="/kids" className="font-medium text-[#0f172a] transition-colors hover:text-[#f97316]">
+              {t('kidsSpace')}
+            </Link>
+          )}
 
           {user ? (
             <>
               <Link
                 href="/profile"
-                className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
+                className="font-medium text-[#0f172a] transition-colors hover:text-[#0f766e]"
               >
                 {t('profile')}
               </Link>
               <button
                 onClick={handleLogout}
-                className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
+                className="font-medium text-[#0f172a] transition-colors hover:text-[#0f766e]"
               >
                 {t('logout')}
               </button>
@@ -51,13 +65,13 @@ export default function Header() {
             <>
               <Link
                 href="/login"
-                className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
+                className="font-medium text-[#0f172a] transition-colors hover:text-[#0f766e]"
               >
                 {t('login')}
               </Link>
               <Link
                 href="/register"
-                className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium"
+                className="rounded-full bg-[#0f766e] px-4 py-2 font-semibold text-white transition-colors hover:bg-[#115e59]"
               >
                 {t('register')}
               </Link>

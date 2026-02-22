@@ -24,12 +24,12 @@ export default function RegisterPage() {
     setError('')
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match')
+      setError(t('passwordMismatch'))
       return
     }
 
     if (password.length < 6) {
-      setError('Password must be at least 6 characters')
+      setError(t('passwordMinLength'))
       return
     }
 
@@ -38,8 +38,9 @@ export default function RegisterPage() {
     try {
       await register(email, password, displayName)
       router.push('/stories')
-    } catch (err: any) {
-      setError(err.message || t('registerError'))
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : t('registerError')
+      setError(message)
       console.error('Registration error:', err)
     } finally {
       setLoading(false)
@@ -49,21 +50,20 @@ export default function RegisterPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-gradient-to-b from-purple-50 to-pink-50 flex items-center justify-center px-4 py-12">
-        <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
-          <h1 className="text-3xl font-bold text-center text-purple-600 mb-8 font-fredoka">
-            {t('registerTitle')}
-          </h1>
+      <main className="min-h-screen bg-[radial-gradient(circle_at_10%_20%,#ccfbf1_0%,#f0fdfa_45%,#fff7ed_100%)] px-4 py-12">
+        <section className="mx-auto w-full max-w-md rounded-3xl bg-white/95 p-8 shadow-xl ring-1 ring-[#0f766e]/15 md:p-10">
+          <p className="mb-3 inline-block rounded-full bg-[#fff7ed] px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[#9a3412]">
+            {t('parentSignup')}
+          </p>
+          <h1 className="mb-8 text-center font-fredoka text-3xl font-bold text-[#0f172a]">{t('registerTitle')}</h1>
 
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4">
-              {error}
-            </div>
+            <div className="mb-4 rounded-xl border border-[#fca5a5] bg-[#fef2f2] px-4 py-3 text-[#991b1b]">{error}</div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="displayName" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="displayName" className="mb-2 block text-sm font-semibold text-[#0f172a]">
                 {t('displayName')}
               </label>
               <input
@@ -72,13 +72,13 @@ export default function RegisterPage() {
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                placeholder="Your name"
+                className="w-full rounded-xl border border-[#99f6e4] bg-white px-4 py-3 text-[#0f172a] outline-none ring-offset-2 transition focus:border-[#0f766e] focus:ring-2 focus:ring-[#0f766e]/30"
+                placeholder={t('yourName')}
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="email" className="mb-2 block text-sm font-semibold text-[#0f172a]">
                 {t('email')}
               </label>
               <input
@@ -87,13 +87,13 @@ export default function RegisterPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full rounded-xl border border-[#99f6e4] bg-white px-4 py-3 text-[#0f172a] outline-none ring-offset-2 transition focus:border-[#0f766e] focus:ring-2 focus:ring-[#0f766e]/30"
                 placeholder="you@example.com"
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="password" className="mb-2 block text-sm font-semibold text-[#0f172a]">
                 {t('password')}
               </label>
               <input
@@ -102,13 +102,13 @@ export default function RegisterPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full rounded-xl border border-[#99f6e4] bg-white px-4 py-3 text-[#0f172a] outline-none ring-offset-2 transition focus:border-[#0f766e] focus:ring-2 focus:ring-[#0f766e]/30"
                 placeholder="••••••••"
               />
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="confirmPassword" className="mb-2 block text-sm font-semibold text-[#0f172a]">
                 {t('confirmPassword')}
               </label>
               <input
@@ -117,7 +117,7 @@ export default function RegisterPage() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full rounded-xl border border-[#99f6e4] bg-white px-4 py-3 text-[#0f172a] outline-none ring-offset-2 transition focus:border-[#0f766e] focus:ring-2 focus:ring-[#0f766e]/30"
                 placeholder="••••••••"
               />
             </div>
@@ -125,19 +125,19 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full rounded-xl bg-[#0f766e] py-3 font-semibold text-white transition hover:bg-[#115e59] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {loading ? '...' : tCommon('register')}
             </button>
           </form>
 
-          <p className="mt-6 text-center text-gray-600">
+          <p className="mt-6 text-center text-[#475569]">
             {t('hasAccount')}{' '}
-            <Link href="/login" className="text-purple-600 hover:text-purple-700 font-medium">
+            <Link href="/login" className="font-semibold text-[#0f766e] hover:text-[#115e59]">
               {tCommon('login')}
             </Link>
           </p>
-        </div>
+        </section>
       </main>
     </>
   )

@@ -1,10 +1,6 @@
 import { createClient } from 'next-sanity'
 import { createImageUrlBuilder } from '@sanity/image-url'
 
-// Define SanityImageSource type locally as it's not exported from @sanity/image-url
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type SanityImageSource = any
-
 export const client = createClient({
   projectId: process.env.SANITY_PROJECT_ID || 'w7lunhwo',
   dataset: process.env.SANITY_DATASET || 'production',
@@ -13,6 +9,7 @@ export const client = createClient({
 })
 
 const builder = createImageUrlBuilder(client)
+type SanityImageSource = Parameters<typeof builder.image>[0]
 
 export function urlFor(source: SanityImageSource) {
   return builder.image(source)
@@ -22,6 +19,7 @@ export function urlFor(source: SanityImageSource) {
 export interface StoryBook {
   _id: string
   _type: 'storyBook'
+  author?: string
   title: {
     en: string
     af: string
@@ -34,8 +32,8 @@ export interface StoryBook {
     af: string
   }
   story: {
-    en: any[]
-    af: any[]
+    en: unknown[]
+    af: unknown[]
   }
   audioFile?: {
     en?: {
@@ -71,6 +69,34 @@ export interface StoryBook {
   publishedAt: string
   ageRange: string
   averageRating: number
+  seo?: {
+    metaTitle?: {
+      en?: string
+      af?: string
+    }
+    metaDescription?: {
+      en?: string
+      af?: string
+    }
+    ogImage?: {
+      en?: {
+        asset?: {
+          _ref?: string
+          _type?: 'reference'
+          url?: string
+        }
+      }
+      af?: {
+        asset?: {
+          _ref?: string
+          _type?: 'reference'
+          url?: string
+        }
+      }
+    }
+    canonicalUrl?: string
+    noIndex?: boolean
+  }
 }
 
 export interface SiteDesign {

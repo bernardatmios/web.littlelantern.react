@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import { useTranslations } from 'next-intl'
 
 interface AudioPlayerProps {
   audioFile: {
@@ -13,23 +14,24 @@ interface AudioPlayerProps {
 }
 
 export default function AudioPlayer({ audioFile, title }: AudioPlayerProps) {
+  const t = useTranslations('audio')
   const audioRef = useRef<HTMLAudioElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
 
-  // Get audio URL from asset
   if (!audioFile?.asset) {
     return null
   }
-  
-  // Use the URL directly if available, otherwise construct from _ref
-  const audioUrl = audioFile.asset.url || (() => {
-    if (!audioFile.asset._ref) return null
-    const assetId = audioFile.asset._ref.replace('file-', '').replace('-mp3', '.mp3').replace('-m4a', '.m4a')
-    return `https://cdn.sanity.io/files/w7lunhwo/production/${assetId}`
-  })()
-  
+
+  const audioUrl =
+    audioFile.asset.url ||
+    (() => {
+      if (!audioFile.asset._ref) return null
+      const assetId = audioFile.asset._ref.replace('file-', '').replace('-mp3', '.mp3').replace('-m4a', '.m4a')
+      return `https://cdn.sanity.io/files/w7lunhwo/production/${assetId}`
+    })()
+
   if (!audioUrl) {
     return null
   }
@@ -71,11 +73,13 @@ export default function AudioPlayer({ audioFile, title }: AudioPlayerProps) {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`
   }
 
+  const progress = duration > 0 ? (currentTime / duration) * 100 : 0
+
   return (
-    <div className="bg-purple-50 rounded-xl p-6 border-2 border-purple-200">
-      <div className="flex items-center gap-4 mb-4">
+    <div className="rounded-xl border-2 border-[#99f6e4] bg-[#ecfeff] p-6">
+      <div className="mb-4 flex items-center gap-4">
         <span className="text-2xl">🎧</span>
-        <h3 className="text-lg font-semibold text-purple-600">Listen to the story</h3>
+        <h3 className="text-lg font-semibold text-[#0f766e]">{t('listenTitle')}</h3>
       </div>
 
       <audio
@@ -89,7 +93,8 @@ export default function AudioPlayer({ audioFile, title }: AudioPlayerProps) {
       <div className="flex items-center gap-4">
         <button
           onClick={togglePlay}
-          className="bg-purple-600 hover:bg-purple-700 text-white w-12 h-12 rounded-full flex items-center justify-center transition-colors"
+          aria-label={isPlaying ? t('pauseAria', { title }) : t('playAria', { title })}
+          className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0f766e] text-white transition-colors hover:bg-[#115e59]"
         >
           {isPlaying ? '⏸' : '▶'}
         </button>
@@ -101,14 +106,12 @@ export default function AudioPlayer({ audioFile, title }: AudioPlayerProps) {
             max={duration || 0}
             value={currentTime}
             onChange={handleSeek}
-            className="w-full h-2 bg-purple-200 rounded-lg appearance-none cursor-pointer"
+            className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-[#99f6e4]"
             style={{
-              background: `linear-gradient(to right, #9333ea 0%, #9333ea ${
-                (currentTime / duration) * 100
-              }%, #e9d5ff ${(currentTime / duration) * 100}%, #e9d5ff 100%)`,
+              background: `linear-gradient(to right, #0f766e 0%, #0f766e ${progress}%, #99f6e4 ${progress}%, #99f6e4 100%)`,
             }}
           />
-          <div className="flex justify-between text-sm text-gray-600 mt-1">
+          <div className="mt-1 flex justify-between text-sm text-[#475569]">
             <span>{formatTime(currentTime)}</span>
             <span>{formatTime(duration)}</span>
           </div>

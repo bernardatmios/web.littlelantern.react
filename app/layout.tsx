@@ -3,7 +3,12 @@ import { Fredoka, Poppins } from "next/font/google";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getLocale } from 'next-intl/server';
 import { AuthProvider } from '@/contexts/AuthContext';
+import { ViewModeProvider } from '@/contexts/ViewModeContext';
+import Footer from '@/components/Footer';
+import { BRAND_FAVICON_URL } from '@/lib/branding';
 import "./globals.css";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.littlelantern.kids';
 
 const fredoka = Fredoka({
   variable: "--font-fredoka",
@@ -18,8 +23,37 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Little Lanterns - Children's Story Books",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Little Lanterns - Children's Story Books",
+    template: '%s | Little Lanterns',
+  },
   description: "Bilingual children's story books in English and Afrikaans",
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    title: "Little Lanterns - Children's Story Books",
+    description: "Bilingual children's story books in English and Afrikaans",
+    siteName: 'Little Lanterns',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Little Lanterns - Children's Story Books",
+    description: "Bilingual children's story books in English and Afrikaans",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: BRAND_FAVICON_URL,
+    shortcut: BRAND_FAVICON_URL,
+    apple: BRAND_FAVICON_URL,
+  },
 };
 
 export default async function RootLayout({
@@ -37,7 +71,10 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages}>
           <AuthProvider>
-            {children}
+            <ViewModeProvider>
+              {children}
+              <Footer />
+            </ViewModeProvider>
           </AuthProvider>
         </NextIntlClientProvider>
       </body>
