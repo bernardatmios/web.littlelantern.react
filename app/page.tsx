@@ -49,12 +49,6 @@ export default async function HomePage() {
             >
               {t('exploreLibrary')}
             </Link>
-            <Link
-              href="/kids"
-              className="rounded-full border-2 border-[#f97316] bg-white px-8 py-4 text-lg font-semibold text-[#9a3412] transition hover:bg-[#fff7ed]"
-            >
-              {t('openKidsSpace')}
-            </Link>
           </div>
         </section>
 

@@ -1,12 +1,12 @@
 'use client'
 
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { PortableText } from '@portabletext/react'
 import { StoryBook, urlFor } from '@/lib/sanity'
 import { useAuth } from '@/contexts/AuthContext'
-import { useViewMode } from '@/contexts/ViewModeContext'
 import AudioPlayer from './AudioPlayer'
 import RatingComponent from './RatingComponent'
 
@@ -16,19 +16,21 @@ interface StoryContentProps {
 }
 
 export default function StoryContent({ story, locale }: StoryContentProps) {
+  const tCommon = useTranslations('common')
   const tStory = useTranslations('story')
   const tStories = useTranslations('stories')
   const { user } = useAuth()
-  const { mode, childProfile } = useViewMode()
   const title = story.title[locale as 'en' | 'af']
   const intro = story.shortIntroduction[locale as 'en' | 'af']
   const content = story.story[locale as 'en' | 'af']
 
   const coverImage = story.coverImage?.[locale as 'en' | 'af'] || story.coverImage?.en || story.coverImage?.af
-  const imageUrl = coverImage ? urlFor(coverImage).width(900).height(1200).url() : null
+  const imageUrl = coverImage ? urlFor(coverImage).width(900).height(1200).fit('max').url() : null
+  const expandedImageUrl = coverImage ? urlFor(coverImage).width(2200).height(3200).fit('max').url() : null
 
   const canReadFull = user || story.isFree
-  const canRate = Boolean(user && mode === 'parent')
+  const canRate = Boolean(user)
+  const [isCoverExpanded, setIsCoverExpanded] = useState(false)
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#ecfeff] via-[#f0fdfa] to-[#fff7ed] py-12">
@@ -43,13 +45,19 @@ export default function StoryContent({ story, locale }: StoryContentProps) {
               </div>
             )}
             <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/35 to-transparent" />
-            <div className="absolute left-4 top-4 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-[#0f766e]">
-              {mode === 'child' ? tStory('childModeBadge', { name: childProfile.name }) : tStory('parentModeBadge')}
-            </div>
-            {story.isFree && (
+            {!story.isFree && (
               <div className="absolute right-4 top-4 rounded-full bg-[#f97316] px-4 py-2 text-sm font-semibold text-white">
-                {tStory('freeStoryBadge')}
+                {tCommon('premium')}
               </div>
+            )}
+            {imageUrl && (
+              <button
+                type="button"
+                onClick={() => setIsCoverExpanded(true)}
+                className="absolute bottom-4 right-4 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-[#0f172a] transition hover:bg-white"
+              >
+                {tStory('expandCover')}
+              </button>
             )}
           </div>
 
@@ -130,6 +138,31 @@ export default function StoryContent({ story, locale }: StoryContentProps) {
           </div>
         </div>
       </article>
+
+      {expandedImageUrl && isCoverExpanded && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={tStory('expandedCoverTitle')}
+          className="fixed inset-0 z-50 bg-black/85 p-4 md:p-10"
+          onClick={() => setIsCoverExpanded(false)}
+        >
+          <div className="mx-auto flex h-full w-full max-w-5xl flex-col" onClick={(event) => event.stopPropagation()}>
+            <div className="mb-4 flex justify-end">
+              <button
+                type="button"
+                onClick={() => setIsCoverExpanded(false)}
+                className="rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-[#0f172a] transition hover:bg-white"
+              >
+                {tStory('closeCover')}
+              </button>
+            </div>
+            <div className="relative min-h-0 flex-1">
+              <Image src={expandedImageUrl} alt={title} fill className="object-contain" sizes="100vw" />
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   )
 }

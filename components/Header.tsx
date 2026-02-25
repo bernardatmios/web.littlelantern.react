@@ -4,15 +4,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { useAuth } from '@/contexts/AuthContext'
-import { useViewMode } from '@/contexts/ViewModeContext'
 import { BRAND_LOGO_URL } from '@/lib/branding'
 import LanguageSwitcher from './LanguageSwitcher'
-import ModeSwitcher from './ModeSwitcher'
 
 export default function Header() {
   const t = useTranslations('common')
   const { user, logout } = useAuth()
-  const { mode } = useViewMode()
 
   const handleLogout = async () => {
     try {
@@ -32,19 +29,12 @@ export default function Header() {
             </div>
             <span className="text-2xl font-bold text-[#0f766e] font-fredoka">{t('appName')}</span>
           </Link>
-          <ModeSwitcher />
         </div>
 
         <nav className="flex items-center gap-5 text-sm md:text-base">
           <Link href="/stories" className="font-medium text-[#0f172a] transition-colors hover:text-[#0f766e]">
-            {mode === 'parent' ? t('storyLibrary') : t('stories')}
+            {t('storyLibrary')}
           </Link>
-
-          {mode === 'child' && (
-            <Link href="/kids" className="font-medium text-[#0f172a] transition-colors hover:text-[#f97316]">
-              {t('kidsSpace')}
-            </Link>
-          )}
 
           {user ? (
             <>

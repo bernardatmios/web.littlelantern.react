@@ -32,9 +32,6 @@ export default function Footer() {
               <li>
                 <Link href="/stories" className="text-[#334155] hover:text-[#0f766e]">{common('storyLibrary')}</Link>
               </li>
-              <li>
-                <Link href="/kids" className="text-[#334155] hover:text-[#0f766e]">{common('kidsSpace')}</Link>
-              </li>
             </ul>
           </section>
 
