@@ -67,19 +67,19 @@
   "landing": {
     "independentPublication": "Onafhanklike tweetalige publikasie",
     "heroTitle": "Stories wat ouers vertrou, gemaak vir kinders om te lees en te luister.",
-    "heroSubtitle": "Skakel tussen Ouer-modus vir kurering en Kind-modus vir gefokusde lees. Engelse en Afrikaanse stories, met opsionele vertelling.",
+    "heroSubtitle": "Skakel tussen ouerkeuse en kinderbehoefte vir gefokusde lees.   Engelse en Afrikaanse stories met opsionele vertelopsie beskikbaar.",
     "exploreLibrary": "Verken biblioteek",
     "openKidsSpace": "Open kinderspasie",
-    "featuredStories": "Uitgeligte stories",
+    "featuredStories": "Voorgestelde stories",
     "featuredSubtitle": "'n Voorsmakie van wat gesinne vanaand kan lees.",
     "viewAllStories": "Sien alle stories",
     "noStoriesReady": "Stories word voorberei. Kom kyk binnekort weer.",
-    "featureParentTitle": "Ouer-kurering",
-    "featureParentDescription": "Filter volgens ouderdom en gratis/premium-status om vinnig die regte stories te kies.",
-    "featureChildTitle": "Kind-profiel",
-    "featureChildDescription": "Skep 'n kindgefokusde ruimte met ouderdomsgeskikte lees- en luisteraanbevelings.",
-    "featureRatingTitle": "Ouer-graderings",
-    "featureRatingDescription": "Ingelogde ouers kan stories gradeer om gehalte en relevansie te help vorm."
+    "featureParentTitle": "Ouerkeuse",
+    "featureParentDescription": "Kies vinnig stories volgens ouderdom en die keuse tussen gratis-en premiumstatus",
+    "featureChildTitle": "Kinderprofiel",
+    "featureChildDescription": "Skep 'n kindergefokusde ruimte waarin ouderdomsgeskiktheid en luistervaardighede oorheers.",
+    "featureRatingTitle": "Oueraanbevelings",
+    "featureRatingDescription": "Geregistreerde ouers kan stories meet volgens gehalte en ouderdomsgeskiktheid."
   },
   "library": {
     "title": "Storie-biblioteek",
