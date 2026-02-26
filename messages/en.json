@@ -84,7 +84,7 @@
   "library": {
     "title": "Story Library",
     "description": "Browse bedtime stories, filter by age, and switch between Parent Mode and Child Mode for the right reading experience.",
-    "curateStories": "Curate Stories",
+    "curateStories": "Search for Stories",
     "booksFound": "{count} books found",
     "ageFilterLabel": "Age Group",
     "availabilityLabel": "Access",

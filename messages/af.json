@@ -84,7 +84,7 @@
   "library": {
     "title": "Storie-biblioteek",
     "description": "Blaai deur slaaptydstories, filter volgens ouderdom, en skakel tussen Ouer-modus en Kind-modus vir die regte leeservaring.",
-    "curateStories": "Kies stories",
+    "curateStories": "Soek stories",
     "booksFound": "{count} boeke gevind",
     "ageFilterLabel": "Ouderdomsgroep",
     "availabilityLabel": "Toegang",
