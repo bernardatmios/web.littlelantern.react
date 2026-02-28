@@ -7,10 +7,12 @@ import Header from '@/components/Header'
 import StoryContent from '@/components/StoryContent'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.littlelantern.kids'
+export const revalidate = 300
 
 const getStory = cache(async (slug: string): Promise<StoryBook | null> => {
   const query = `*[_type == "storyBook" && slug.current == $slug][0] {
     _id,
+    _updatedAt,
     title,
     slug,
     author,
@@ -54,6 +56,18 @@ const getStory = cache(async (slug: string): Promise<StoryBook | null> => {
 
   return client.fetch(query, { slug })
 })
+
+const getStorySlugs = cache(async (): Promise<Array<{ slug: string }>> => {
+  const query = `*[_type == "storyBook" && defined(slug.current)]{
+    "slug": slug.current
+  }`
+  return client.fetch(query)
+})
+
+export async function generateStaticParams() {
+  const slugs = await getStorySlugs()
+  return slugs.map(({ slug }) => ({ slug }))
+}
 
 function getLocalizedValue(
   value: { en?: string; af?: string } | undefined,
@@ -160,7 +174,9 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
     description: storyDescription,
     inLanguage: locale === 'af' ? 'af' : 'en',
     datePublished: story.publishedAt,
+    dateModified: story._updatedAt,
     url: storyUrl,
+    mainEntityOfPage: storyUrl,
     image: coverImageUrl,
     author: {
       '@type': 'Person',

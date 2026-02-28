@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getLocale, getTranslations } from 'next-intl/server'
@@ -5,6 +6,26 @@ import Header from '@/components/Header'
 import StoryCard from '@/components/StoryCard'
 import { BRAND_LOGO_URL } from '@/lib/branding'
 import { client, StoryBook } from '@/lib/sanity'
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.littlelantern.kids'
+
+export const metadata: Metadata = {
+  title: "Little Lanterns - Children's Story Books",
+  description: "Bilingual children's story books in English and Afrikaans",
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    title: "Little Lanterns - Children's Story Books",
+    description: "Bilingual children's story books in English and Afrikaans",
+    siteName: 'Little Lanterns',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Little Lanterns - Children's Story Books",
+    description: "Bilingual children's story books in English and Afrikaans",
+  },
+}
 
 async function getSampleStories(): Promise<StoryBook[]> {
   const query = `*[_type == "storyBook"] | order(publishedAt desc)[0...3] {
@@ -26,9 +47,18 @@ export default async function HomePage() {
   const t = await getTranslations('landing')
   const locale = await getLocale()
   const sampleStories = await getSampleStories()
+  const homeJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Little Lanterns',
+    url: siteUrl,
+    inLanguage: ['en', 'af'],
+    description: "Bilingual children's story books in English and Afrikaans",
+  }
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }} />
       <Header />
       <main className="min-h-screen bg-[radial-gradient(circle_at_10%_20%,#ccfbf1_0%,#f0fdfa_40%,#fff7ed_100%)]">
         <section className="container mx-auto px-4 pb-16 pt-14 text-center">

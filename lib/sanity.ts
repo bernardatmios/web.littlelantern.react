@@ -20,6 +20,7 @@ export function urlFor(source: SanityImageSource) {
 export interface StoryBook {
   _id: string
   _type: 'storyBook'
+  _updatedAt?: string
   author?: string
   title: {
     en: string
